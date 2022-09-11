@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mongodbdev
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    depends_on:
+      - db
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongodbdev:27017/
